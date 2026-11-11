@@ -762,3 +762,21 @@ body::after { display: none; }
 .hb-theme .hb-theme-moon { display: none; }
 [data-theme='light'] .hb-theme .hb-theme-sun { display: none; }
 [data-theme='light'] .hb-theme .hb-theme-moon { display: block; }
+
+/* the switch keeps its small footprint but gets a 42px touch target */
+.hb-theme { position: relative; }
+.hb-theme::after { content: ''; position: absolute; inset: -8px -6px; }
+
+/* ── phones: the bar must hold the name, three links and the switch ── */
+@media (max-width: 400px) {
+  .hb-top { gap: 10px; padding-inline: 14px 10px; }
+  .hb-nav { gap: 10px; }
+  .hb-nav a { font-size: 10.5px; letter-spacing: .04em; }
+  .hb-brand { font-size: 17px; }
+  .hb-brand-owl { display: none; }
+}
+@media (max-width: 330px) {
+  .hb-nav a { font-size: 10px; letter-spacing: .02em; }
+  .hb-nav { gap: 8px; }
+  .hb-top { padding-inline: 12px 8px; }
+}
