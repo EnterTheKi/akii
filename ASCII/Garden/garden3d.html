@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>3D ASCII Garden</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="garden"></canvas>
+
+  <!-- Load the original garden code -->
+  <script src="garden3d.js"></script>
+
+  <script>
+    // Start the garden
+    const canvas = document.getElementById('garden');
+    const g = new Garden3D(canvas, { follow: false });
+
+    // Optional: make the camera follow the butterfly
+    // g.toggleFollow();
+  </script>
+</body>
+</html>

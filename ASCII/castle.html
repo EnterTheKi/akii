@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ASCII Castle</title>
+  <style>
+    body {
+      margin: 0;
+      background: #07080c;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    canvas {
+      background: #0a0c10;
+      image-rendering: pixelated;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="c" width="900" height="600"></canvas>
+
+  <script>
+    const canvas = document.getElementById('c');
+    const ctx = canvas.getContext('2d');
+
+    const points = [];
+
+    function add(x, y, z) {
+      points.push([x, y, z]);
+    }
+
+    // ===== MAIN KEEP =====
+    for (let y = 0; y <= 2.8; y += 0.11) {
+      for (let x = -1.8; x <= 1.8; x += 0.11) {
+        add(x, y, -1.8);
+        add(x, y,  1.8);
+      }
+      for (let z = -1.8; z <= 1.8; z += 0.11) {
+        add(-1.8, y, z);
+        add( 1.8, y, z);
+      }
+    }
+
+    // Top of keep
+    for (let x = -1.8; x <= 1.8; x += 0.11) {
+      add(x, 2.9, -1.8);
+      add(x, 2.9,  1.8);
+    }
+    for (let z = -1.8; z <= 1.8; z += 0.11) {
+      add(-1.8, 2.9, z);
+      add( 1.8, 2.9, z);
+    }
+
+    // ===== 4 CORNER TOWERS =====
+    const towers = [
+      [-2.45, -2.45],
+      [ 2.45, -2.45],
+      [-2.45,  2.45],
+      [ 2.45,  2.45]
+    ];
+
+    for (const [tx, tz] of towers) {
+      // Tower body
+      for (let y = 0; y <= 4.3; y += 0.11) {
+        for (let a = 0; a < Math.PI * 2; a += 0.22) {
+          const r = 0.58;
+          add(tx + Math.cos(a) * r, y, tz + Math.sin(a) * r);
+        }
+      }
+      // Battlements
+      for (let a = 0; a < Math.PI * 2; a += 0.55) {
+        const r = 0.68;
+        add(tx + Math.cos(a) * r, 4.55, tz + Math.sin(a) * r);
+        add(tx + Math.cos(a) * r, 4.7,  tz + Math.sin(a) * r);
+      }
+    }
+
+    // ===== GROUND RING =====
+    for (let i = 0; i < 180; i++) {
+      const a = (i / 180) * Math.PI * 2;
+      const r = 3.6 + Math.random() * 0.3;
+      add(Math.cos(a) * r, 0, Math.sin(a) * r);
+    }
+
+    // Camera
+    const cameraDistance = 12;
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2 + 50;
+    const scale = 52;
+
+    let angle = 0.6;
+
+    function draw() {
+      ctx.fillStyle = '#07080c';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.font = '12px monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      const cos = Math.cos(angle);
+      const sin = Math.sin(angle);
+
+      for (const p of points) {
+        // Gate opening (front middle)
+        if (p[2] < -1.65 && Math.abs(p[0]) < 0.75 && p[1] < 1.9) continue;
+
+        // Rotate
+        const x = p[0] * cos - p[2] * sin;
+        const z = p[0] * sin + p[2] * cos;
+        const y = p[1];
+
+        const perspective = cameraDistance / (cameraDistance + z + 5);
+        if (perspective < 0.22) continue;
+
+        const screenX = centerX + x * scale * perspective;
+        const screenY = centerY - y * scale * perspective;
+
+        // Character + color by height
+        let char = '#';
+        let color = '#6a9aa8';
+
+        if (y > 4.3) {
+          char = 'M';
+          color = '#d0f0f8';
+        } else if (y > 2.85) {
+          char = '=';
+          color = '#9fd4dc';
+        } else if (y < 0.15) {
+          char = '.';
+          color = '#3a5a62';
+        } else if (y > 3.5) {
+          color = '#b0e0ec';
+        }
+
+        ctx.fillStyle = color;
+        ctx.fillText(char, screenX, screenY);
+      }
+
+      angle += 0.0055;
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
+</body>
+</html>

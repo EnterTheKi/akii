@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Transylvania Vampire Castle – 3D ASCII</title>
+  <style>
+    body { margin:0; background:#000; overflow:hidden; }
+    canvas { display:block; width:100vw; height:100vh; cursor:grab; }
+    canvas:active { cursor:grabbing; }
+  </style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+  <script src="castle3d.js"></script>
+  <script>
+    new Castle3D(document.getElementById('c'));
+  </script>
+</body>
+</html>
