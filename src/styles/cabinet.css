@@ -13,15 +13,15 @@
   isolation: isolate;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  border: 1px solid #d6b36a30;
+  border: 1px solid color-mix(in srgb, var(--gold) 19%, transparent);
   background:
-    radial-gradient(90% 80% at 50% 42%, #1a140e 0%, #100d09 62%, #0a0806 100%);
+    radial-gradient(90% 80% at 50% 42%, #1a140e 0%, var(--surface) 62%, #0a0806 100%);
   cursor: crosshair;
   touch-action: pan-y;
   -webkit-tap-highlight-color: transparent;
   transition: border-color .3s;
 }
-.cab-screen:hover { border-color: #d6b36a66; }
+.cab-screen:hover { border-color: color-mix(in srgb, var(--gold) 40%, transparent); }
 .cab-screen canvas { display: block; width: 100%; height: 100%; position: relative; z-index: 0; }
 .cab-screen::before {
   content: '';
@@ -114,7 +114,7 @@
   gap: 12px;
   margin: 18px 0 0;
   padding-top: 10px;
-  border-top: 1px solid #d6b36a24;
+  border-top: 1px solid color-mix(in srgb, var(--gold) 14%, transparent);
   font: 500 9.5px/1.4 var(--mono);
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -130,7 +130,7 @@
   gap: 20px 40px;
   margin: 130px 0 0;
   padding: 32px 0 0;
-  border-top: 1px solid #d6b36a2b;
+  border-top: 1px solid color-mix(in srgb, var(--gold) 17%, transparent);
 }
 .hb-cab-call h2 {
   margin: 8px 0 0;

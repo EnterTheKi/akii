@@ -15,7 +15,7 @@ body.is-castle {
   display: block;
   width: 100%;
   height: 100%;
-  background: #0b0907;
+  background: var(--night);
   cursor: grab;
   touch-action: none;
 }
@@ -59,7 +59,7 @@ body.castle-ready .castle-sky { opacity: .12; }
   justify-content: space-between;
   gap: 16px;
   padding: max(16px, env(safe-area-inset-top)) clamp(16px, 3.2vw, 38px) 30px;
-  background: linear-gradient(180deg, #0b0907f2 0%, #0b0907b3 45%, transparent 100%);
+  background: linear-gradient(180deg, var(--night)f2 0%, var(--night)b3 45%, transparent 100%);
   pointer-events: none;
 }
 .castle-brand {
@@ -78,7 +78,7 @@ body.castle-ready .castle-sky { opacity: .12; }
 }
 .castle-brand b {
   padding-left: 10px;
-  border-left: 1px solid #d6b36a55;
+  border-left: 1px solid color-mix(in srgb, var(--gold) 33%, transparent);
   font: 500 9px/1.4 var(--mono);
   letter-spacing: .18em;
   text-transform: uppercase;
@@ -107,7 +107,7 @@ body.castle-ready .castle-sky { opacity: .12; }
   justify-content: space-between;
   gap: 20px;
   padding: 44px clamp(16px, 3.2vw, 38px) max(18px, env(safe-area-inset-bottom));
-  background: linear-gradient(0deg, #0b0907f2 0%, #0b0907b3 50%, transparent 100%);
+  background: linear-gradient(0deg, var(--night)f2 0%, var(--night)b3 50%, transparent 100%);
   pointer-events: none;
 }
 .castle-controls {
@@ -148,7 +148,7 @@ body.castle-ready .castle-sky { opacity: .12; }
   place-items: center;
   overflow: auto;
   padding: max(20px, env(safe-area-inset-top)) 20px max(20px, env(safe-area-inset-bottom));
-  background: radial-gradient(90% 80% at 50% 45%, #21170f 0%, #0b0907 60%, #050403 100%);
+  background: radial-gradient(90% 80% at 50% 45%, #21170f 0%, var(--night) 60%, #050403 100%);
   cursor: pointer;
   opacity: 1;
   transition: opacity .8s ease, visibility .8s;
@@ -163,7 +163,7 @@ body.castle-ready .castle-sky { opacity: .12; }
   content: '';
   position: absolute;
   inset: 16px;
-  border: 1px solid #d6b36a26;
+  border: 1px solid color-mix(in srgb, var(--gold) 15%, transparent);
   pointer-events: none;
 }
 .castle-gate::after {
@@ -194,7 +194,7 @@ body.castle-ready .castle-sky { opacity: .12; }
   height: 46px;
   margin-bottom: 16px;
   opacity: .9;
-  filter: drop-shadow(0 0 18px #d6b36a26);
+  filter: drop-shadow(0 0 18px color-mix(in srgb, var(--gold) 15%, transparent));
 }
 .castle-gate-glyph {
   max-width: 100%;
@@ -229,7 +229,7 @@ body.castle-ready .castle-sky { opacity: .12; }
   margin-top: 24px;
   padding: 12px 18px;
   color: var(--ink);
-  background: #0b090799;
+  background: var(--veil);
   border: 1px solid var(--red);
   font: 500 10.5px/1 var(--mono);
   letter-spacing: .16em;
