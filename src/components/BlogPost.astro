@@ -1,0 +1,36 @@
+---
+// One logbook note: date and reading time, the title, the summary, then the
+// original kiaz prose (and its small ASCII header) in the reading column.
+import { render } from 'astro:content';
+import Herb from '../layouts/Herb.astro';
+import { formatDate, getPosts, postHref, postSlug, readMinutes, url, type Post } from '../lib/site';
+
+interface Props { post: Post }
+const { post } = Astro.props;
+const d = post.data;
+const slug = postSlug(post);
+const { Content } = await render(post);
+const minutes = readMinutes(post);
+const posts = await getPosts();
+const at = posts.findIndex((p) => postSlug(p) === slug);
+const next = posts.length > 1 ? posts[(at + 1) % posts.length] : null;
+---
+<Herb title={d.title} description={d.summary} path={`logbook/${slug}/`}>
+  <article class="hb-doc">
+    <header class="hb-doc-head hb-measure">
+      <a class="hb-back" href={url('logbook/')}>← All notes</a>
+      <p class="hb-tag"><time datetime={d.date.toISOString()}>{formatDate(d.date)}</time> · {minutes} min read</p>
+      <h1 class="hb-doc-t" data-perch>{d.title}</h1>
+      <p class="hb-doc-lead">{d.summary}</p>
+      {d.tags.length > 0 && <p class="hb-doc-note">{d.tags.join(' · ')}</p>}
+    </header>
+    <div class="hb-prose hb-measure"><Content /></div>
+    <footer class="hb-doc-end hb-measure">
+      <img class="hb-fleuron" src={url('owl-mark.svg')} alt="" aria-hidden="true" />
+      <nav class="hb-next">
+        <a href={url('logbook/')}><span>← All notes</span></a>
+        {next && <a class="is-to" href={postHref(next)}><small>Next note</small><span>{next.data.title}</span></a>}
+      </nav>
+    </footer>
+  </article>
+</Herb>

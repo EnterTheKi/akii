@@ -1,0 +1,43 @@
+---
+// The hidden room behind the butterfly: full-bleed, no rail or site bar.
+import '../styles/herbarium.css';
+import '../styles/castle.css';
+import { profile } from '../data/profile';
+import { url } from '../lib/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = 'The Castle',
+  description = "The watcher's castle: an interactive 3D ASCII keep behind the butterfly. 33:27.",
+} = Astro.props;
+const fullTitle = `${title} · ${profile.name}`;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <link rel="icon" href={url('favicon.svg')} type="image/svg+xml" />
+  <meta name="theme-color" content="#0b0907" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta name="twitter:card" content="summary" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+</head>
+<body class="is-castle">
+  <slot />
+  <script is:inline src={url('js/castle3d.js')}></script>
+  <script is:inline src={url('js/castle.js')}></script>
+</body>
+</html>

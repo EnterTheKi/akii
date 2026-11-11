@@ -1,0 +1,44 @@
+---
+// Imaginos: kiaz's five glyphs, mounted as herbarium specimens. No images — each
+// drawing is already in the page; the floating white butterfly is Fay's.
+import Herb from '../layouts/Herb.astro';
+import glyphs from '../data/imaginos.json';
+import { url } from '../lib/site';
+import '../styles/cabinet.css';
+---
+<Herb title="Imaginos" description="Imaginos — the glyph archive. Owl, katana, torii, ensō: the KIAZAKI symbols rendered in raw ASCII." path="imaginos/">
+  <header class="hb-head">
+    <div class="hb-head-copy"><p class="hb-sec-k">Cipher archive · 見えない</p><h1 class="hb-title" data-decode data-perch>Imaginos</h1></div>
+    <p class="hb-lead">The unseen made visible in the plainest characters there are. Five glyphs, no images — everything here is already inside the page.</p>
+  </header>
+
+  <div class="hb-glyphs">
+    {glyphs.map((g, i) => (
+      <article class:list={['hb-glyph', { 'is-wide': i === 0 || i === glyphs.length - 1 }]}>
+        <div class="hb-glyph-box">
+          <span class="hb-glyph-index">GLYPH {g.no}</span>
+          <pre class="hb-glyph-art" aria-hidden="true" set:html={g.art}></pre>
+          <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+        </div>
+        <div class="hb-glyph-label">
+          <p class="hb-tag">{g.no} / {String(glyphs.length).padStart(2, '0')} · 気</p>
+          <h2>{g.title}</h2>
+          <p>{g.note}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <aside class="hb-cab-call">
+    <div>
+      <p class="hb-sec-k">Living glyphs · 動</p>
+      <h2><a href={url('imaginos/cabinet/')}>The Cabinet</a></h2>
+      <p>Three of the glyphs have been left running — a watcher, a signal and a blade, kept in the dark until someone looks.</p>
+    </div>
+    <p class="hb-links"><a href={url('imaginos/cabinet/')}>Open the cabinet →</a></p>
+  </aside>
+
+  <footer class="hb-doc-end">
+    <p class="hb-cta"><a href={url('logbook/')}>Read the logbook →</a><a href={url('vault/')}>The Vault →</a></p>
+  </footer>
+</Herb>

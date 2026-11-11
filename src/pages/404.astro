@@ -1,0 +1,31 @@
+---
+import Herb from '../layouts/Herb.astro';
+import { url } from '../lib/site';
+---
+<Herb title="Not found" noindex>
+  <section class="hb-lost">
+    <img class="hb-lost-art" src={url('owl-mark.svg')} alt="" width="170" height="170" aria-hidden="true" />
+    <div>
+      <p class="hb-tag">Missing file · 404 · 見えない</p>
+      <h1 class="hb-title" data-perch>The trail went cold.</h1>
+      <p class="hb-lead">The link may be old, or the page has moved. The archive is still open.</p>
+      <p class="hb-cta">
+        <a href={url()}>Home</a>
+        <a href={url('vault/')}>The Vault</a>
+        <a href={url('logbook/')}>Logbook</a>
+      </p>
+    </div>
+  </section>
+</Herb>
+
+<style is:global>
+  .hb-lost { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 80px; min-height: 60svh; animation: hb-up .9s cubic-bezier(.2, .8, .2, 1) both; }
+  .hb-lost-art { display: block; width: clamp(120px, 16vw, 170px); height: auto; margin: 0; opacity: .9; filter: drop-shadow(0 0 30px #d6b36a1a); }
+  .hb-lost .hb-tag { color: var(--red); letter-spacing: .2em; }
+  .hb-lost .hb-title { margin-top: 16px; font-size: clamp(52px, 7vw, 104px); }
+  .hb-lost .hb-lead { margin-top: 22px; justify-self: start; }
+  @media (max-width: 860px) {
+    .hb-lost { grid-template-columns: 1fr; gap: 40px; min-height: auto; }
+    .hb-lost-art { width: 118px; }
+  }
+</style>

@@ -1,0 +1,282 @@
+/* The hidden room behind the butterfly: a full-bleed ASCII castle with an owl gate. */
+html,
+body.is-castle { height: 100%; }
+
+body.is-castle {
+  overflow: hidden;
+  overscroll-behavior: none;
+  background: var(--night);
+}
+
+.is-castle .castle-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #0b0907;
+  cursor: grab;
+  touch-action: none;
+}
+.is-castle .castle-canvas:active { cursor: grabbing; }
+.is-castle .castle-canvas:focus-visible { outline: 1px solid var(--gold); outline-offset: -8px; }
+
+/* The Watcher stays in the sky after the gate opens: a constellation, not a UI mark. */
+.castle-sky {
+  position: fixed;
+  z-index: 10;
+  top: 7%;
+  left: 50%;
+  width: min(86vw, 520px);
+  transform: translateX(-50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.4s ease .25s;
+}
+.castle-sky pre {
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  color: #b8a98f;
+  font: 400 clamp(4.8px, 1.8vw, 10px)/1.12 var(--mono);
+  letter-spacing: 0;
+  white-space: pre;
+  text-align: left;
+}
+.castle-sky .red { color: var(--red); }
+.castle-sky .dim { color: #6c6254; }
+body.castle-ready .castle-sky { opacity: .12; }
+
+/* ── the room's brass plate ── */
+.castle-hud {
+  position: fixed;
+  z-index: 60;
+  inset: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: max(16px, env(safe-area-inset-top)) clamp(16px, 3.2vw, 38px) 30px;
+  background: linear-gradient(180deg, #0b0907f2 0%, #0b0907b3 45%, transparent 100%);
+  pointer-events: none;
+}
+.castle-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  text-decoration: none;
+  pointer-events: auto;
+}
+.castle-brand img { width: 28px; height: 28px; flex: none; opacity: .92; }
+.castle-brand span {
+  font: 400 clamp(19px, 2vw, 24px)/1 var(--serif);
+  font-style: italic;
+  letter-spacing: -.02em;
+}
+.castle-brand b {
+  padding-left: 10px;
+  border-left: 1px solid #d6b36a55;
+  font: 500 9px/1.4 var(--mono);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.castle-back {
+  pointer-events: auto;
+  padding: 8px 0;
+  font: 500 10px/1 var(--mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--dim);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color .2s;
+}
+.castle-back:hover { color: var(--ink); }
+
+.castle-foot {
+  position: fixed;
+  z-index: 60;
+  inset: auto 0 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 44px clamp(16px, 3.2vw, 38px) max(18px, env(safe-area-inset-bottom));
+  background: linear-gradient(0deg, #0b0907f2 0%, #0b0907b3 50%, transparent 100%);
+  pointer-events: none;
+}
+.castle-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 0;
+  font: 500 10px/1.4 var(--mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #b2a48e;
+}
+.castle-controls span + span::before {
+  content: '·';
+  margin-right: 14px;
+  color: var(--gold);
+}
+.castle-caption {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0;
+  text-align: right;
+  font: 500 10px/1.4 var(--mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #b2a48e;
+}
+.castle-caption b { font-weight: 500; color: var(--ink); }
+.castle-caption span { color: var(--red); }
+
+/* ── the owl gate ── */
+.castle-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+  overflow: auto;
+  padding: max(20px, env(safe-area-inset-top)) 20px max(20px, env(safe-area-inset-bottom));
+  background: radial-gradient(90% 80% at 50% 45%, #21170f 0%, #0b0907 60%, #050403 100%);
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity .8s ease, visibility .8s;
+}
+.castle-gate.is-open {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.castle-gate[hidden] { display: none; }
+.castle-gate::before {
+  content: '';
+  position: absolute;
+  inset: 16px;
+  border: 1px solid #d6b36a26;
+  pointer-events: none;
+}
+.castle-gate::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent 0 3px, #e7dfc8 3px 4px);
+  opacity: .035;
+  pointer-events: none;
+}
+.castle-gate-in {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  width: min(100%, 680px);
+  padding: clamp(22px, 4vw, 44px) clamp(12px, 3vw, 24px);
+  text-align: center;
+}
+.castle-gate-kicker {
+  margin: 0 0 18px;
+  font: 500 9.5px/1.4 var(--mono);
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.castle-gate-crest {
+  width: 46px;
+  height: 46px;
+  margin-bottom: 16px;
+  opacity: .9;
+  filter: drop-shadow(0 0 18px #d6b36a26);
+}
+.castle-gate-glyph {
+  max-width: 100%;
+  max-height: 42svh;
+  margin: 0 0 20px;
+  overflow: hidden;
+  color: #a99c85;
+  font: 400 clamp(6px, 2vw, 11px)/1.1 var(--mono);
+  letter-spacing: 0;
+  white-space: pre;
+  text-align: left;
+  clip-path: inset(0 0 100% 0);
+  animation: castle-draw 1.8s steps(18) .15s forwards;
+}
+.castle-gate-glyph .red { color: var(--red); }
+.castle-gate-glyph .dim { color: #6c6254; }
+@keyframes castle-draw { to { clip-path: inset(0 0 0 0); } }
+.castle-gate h1 {
+  margin: 0;
+  font: 400 clamp(48px, 8.5vw, 92px)/.92 var(--serif);
+  font-style: italic;
+  letter-spacing: -.04em;
+}
+.castle-gate-copy {
+  max-width: 36ch;
+  margin: 18px 0 0;
+  color: var(--dim);
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+.castle-enter {
+  margin-top: 24px;
+  padding: 12px 18px;
+  color: var(--ink);
+  background: #0b090799;
+  border: 1px solid var(--red);
+  font: 500 10.5px/1 var(--mono);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.castle-enter:hover,
+.castle-enter:focus-visible {
+  background: var(--red);
+  color: var(--night);
+  outline: none;
+}
+.castle-gate-hint {
+  margin: 14px 0 0;
+  font: 10px/1.4 var(--mono);
+  letter-spacing: .06em;
+  color: #6c6254;
+}
+
+@media (max-width: 700px) {
+  .castle-gate::before { inset: 9px; }
+  .castle-gate-in { padding: 12px 6px; }
+  .castle-gate-glyph { font-size: clamp(6px, 1.85vw, 8.6px); max-height: 34svh; }
+  .castle-gate h1 { font-size: clamp(40px, 13vw, 64px); }
+  .castle-gate-copy { font-size: 13px; }
+  .castle-foot { flex-direction: column; align-items: flex-start; gap: 10px; padding-top: 24px; }
+  .castle-caption { text-align: left; }
+}
+
+@media (max-width: 380px) {
+  .castle-brand b { display: none; }
+}
+
+@media (max-width: 400px) {
+  .castle-hud { padding-inline: 12px; }
+  .castle-back { font-size: 9px; letter-spacing: .08em; }
+  .castle-brand span { font-size: 17px; }
+  .castle-brand img { width: 23px; height: 23px; }
+  .castle-brand { gap: 7px; }
+  .castle-foot { padding-inline: 12px; }
+  .castle-controls { font-size: 9px; gap: 4px 8px; }
+  .castle-controls span + span::before { margin-right: 8px; }
+  .castle-caption { font-size: 9px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .castle-gate { transition: none; }
+  .castle-gate-glyph { animation: none; clip-path: none; }
+}

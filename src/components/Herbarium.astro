@@ -1,0 +1,177 @@
+---
+// The home page, rebuilt as KIAZAKI inside the Herbarium: one landing, then the
+// Vault, the Way, Imaginos, the Logbook and the frequency. Behaviour is Fay's
+// experiments/herbarium.js and js/herb.js; the data is all kiaz.
+import Herb from '../layouts/Herb.astro';
+import { profile } from '../data/profile';
+import { precepts } from '../data/precepts';
+import { featured } from '../data/vault';
+import glyphs from '../data/imaginos.json';
+import { formatDate, getPosts, postHref, readMinutes, url } from '../lib/site';
+
+const posts = await getPosts();
+const latest = posts[0];
+const notes = posts.slice(0, 3);
+const rail = [
+  { id: 'work', label: 'The Vault' },
+  { id: 'about', label: 'The Way' },
+  { id: 'tools', label: 'Imaginos' },
+  { id: 'notes', label: 'Logbook' },
+  { id: 'contact', label: 'Frequency' },
+];
+const pad = (n: number) => String(n).padStart(2, '0');
+const lines: Record<string, string> = {
+  'stills-01': 'Irezumi owl, green ink, eyes set to 33:27. The first frame in the vault.',
+  'stills-10': 'The watcher at full voltage. A neon owl cut from the long night.',
+  'stills-18': 'The vow and the blade, held in the same hand. Form is temporary; the cut remains.',
+};
+const works = featured.map((v) => {
+  const caption = v.caption.replace(/^\d+\s*—\s*/, '');
+  const [title, ...rest] = caption.split(' — ');
+  return { ...v, title, sub: rest.join(' — '), note: lines[v.id] };
+});
+const lead = works[0];
+const featuredGlyph = glyphs[0];
+---
+<Herb home scripts={['experiments/herbarium.js']}>
+  <nav class="hb-rail" id="hb-rail" aria-label="Sections">
+    <span class="hb-stem"><i id="hb-grow"></i></span>
+    {rail.map((s, i) => (
+      <a href={`#${s.id}`} data-id={s.id}><b>{pad(i + 1)}</b><span>{s.label}</span></a>
+    ))}
+  </nav>
+
+  <div class="hb-gwrap"><canvas id="hb-garden" aria-hidden="true"></canvas></div>
+
+  <main class="hb" id="main">
+    <header class="hb-hero">
+      <div class="hb-hero-in">
+        <p class="hb-kicker"><span class="kz-mark">{profile.mark}</span> · {profile.frequency} <span class="hb-kicker-sep">/</span> a quiet companion for the long night</p>
+        <div class="hb-name-row">
+          <img class="hb-owl-crest" src={url('owl-mark.svg')} alt="" width="64" height="64" aria-hidden="true" />
+          <h1 class="hb-name" data-perch="start"><span>{profile.name}</span></h1>
+        </div>
+        <p class="hb-intro">{profile.intro}</p>
+        <p class="hb-frequency">{profile.frequencyLine}</p>
+        <p class="hb-cta"><a href="#work">Enter the vault ↓</a><a href={url('logbook/')}>Read the logbook</a></p>
+      </div>
+
+      <aside class="hb-now">
+        <article class="hb-now-p">
+          <a class="hb-img hb-frame hb-now-frame" href={url(`vault/#${lead.id}`)} aria-label={lead.caption}>
+            <img src={url(lead.thumb)} alt={lead.alt} width={lead.width} height={lead.height} />
+            <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+          </a>
+          <p class="hb-tag">Newest frame · {lead.group} {lead.no}</p>
+          <h3><a href={url(`vault/#${lead.id}`)}>{lead.title}</a></h3>
+          {lead.sub && <p class="hb-sub">{lead.sub}</p>}
+        </article>
+        <div class="hb-now-rows">
+          <a href="#about"><p class="hb-tag">The Way · 七</p><b>Lessons from the owl</b><span>Seven precepts for the deep work</span></a>
+          <a href={postHref(latest)}><p class="hb-tag">Newest note · {formatDate(latest.data.date)}</p><b>{latest.data.title}</b><span>{readMinutes(latest)} min read</span></a>
+        </div>
+      </aside>
+    </header>
+
+    <!-- ── 01 · THE VAULT ── -->
+    <section id="work" class="hb-sec">
+      <header class="hb-head">
+        <div class="hb-head-copy"><p class="hb-sec-k">Case 01 · 蔵</p><h2 data-decode data-perch>The Vault</h2></div>
+        <p class="hb-lead">Fifty frames, folded away. Prints and merch kept like evidence in the dark.</p>
+      </header>
+      <div class="hb-feats">
+        {works.map((v) => (
+          <article class="hb-feat">
+            <div class="hb-label">
+              <p class="hb-tag">{v.group} · frame {v.no}</p>
+              <h3><a href={url(`vault/#${v.id}`)}>{v.title}</a></h3>
+              {v.sub && <p class="hb-sub">{v.sub}</p>}
+              <p class="hb-sum">{v.note}</p>
+              <p class="hb-stack"><span>KIAZAKI</span><span>{v.group.toLowerCase()}</span><span>33:27</span></p>
+              <p class="hb-links"><a href={url(`vault/#${v.id}`)}>Open the frame →</a></p>
+            </div>
+            <div class="hb-plate">
+              <a class="hb-img hb-frame" href={url(`vault/#${v.id}`)} aria-label={v.caption}>
+                <img src={url(v.thumb)} alt={v.alt} width={v.width} height={v.height} />
+                <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+              </a>
+              <p class="hb-fig"><span>{v.caption}</span></p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p class="hb-explore is-coll">
+        <a class="hb-all" href={url('vault/')}><small>The Vault · 50 frames</small><span>See all fifty →</span></a>
+      </p>
+    </section>
+
+    <!-- ── 02 · THE WAY ── -->
+    <section id="about" class="hb-sec">
+      <header class="hb-head">
+        <div class="hb-head-copy"><p class="hb-sec-k">Case 02 · 三oo七</p><h2 data-decode data-perch>The Way</h2></div>
+        <p class="hb-lead">Lessons from the owl. Seven precepts for the hour when nobody is watching.</p>
+      </header>
+      <div class="hb-way">
+        {precepts.map((p) => (
+          <article class="hb-precept">
+            <p class="hb-precept-k">{p.n}</p>
+            <div><h3>{p.title}</h3><p>{p.body}</p></div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- ── 03 · IMAGINOS ── -->
+    <section id="tools" class="hb-sec">
+      <header class="hb-head">
+        <div class="hb-head-copy"><p class="hb-sec-k">Case 03 · 見えない</p><h2 data-decode data-perch>Imaginos</h2></div>
+        <p class="hb-lead">The unseen made visible in the plainest characters there are. Five glyphs, no images.</p>
+      </header>
+      <article class="hb-imaginos">
+        <div class="hb-glyph-box">
+          <pre class="hb-glyph-art" aria-hidden="true" set:html={featuredGlyph.art}></pre>
+          <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+        </div>
+        <div class="hb-imaginos-copy">
+          <p class="hb-tag">Glyph {featuredGlyph.no} · The Watcher</p>
+          <h3>{featuredGlyph.title}</h3>
+          <p>{featuredGlyph.note}</p>
+          <p class="hb-links"><a href={url('imaginos/')}>Enter the glyph archive →</a></p>
+        </div>
+      </article>
+    </section>
+
+    <!-- ── 04 · LOGBOOK ── -->
+    <section id="notes" class="hb-sec">
+      <header class="hb-head">
+        <div class="hb-head-copy"><p class="hb-sec-k">Case 04 · 気</p><h2 data-decode data-perch>Logbook</h2></div>
+        <p class="hb-lead">Dispatches on desire, discipline and the mysterious frequency. Written slowly, on purpose.</p>
+      </header>
+      <div class={`hb-journal n-${notes.length}`} style={`--n:${notes.length}`}>
+        {notes.map((p, i) => (
+          <article class="hb-entry">
+            <p class="hb-entry-k">{formatDate(p.data.date)} · {readMinutes(p)} min read</p>
+            <img class="hb-sprig" src={url('owl-mark.svg')} alt="" aria-hidden="true" />
+            <h3><a href={postHref(p)}>{p.data.title}</a></h3>
+            <p class="hb-excerpt">{p.data.summary}</p>
+            <p class="hb-entry-f"><a href={postHref(p)}>Read →</a></p>
+          </article>
+        ))}
+      </div>
+      <p class="hb-explore is-coll is-w">
+        <a class="hb-all" href={url('logbook/')}><small>Logbook · seven notes</small><span>Read all seven →</span></a>
+      </p>
+    </section>
+
+    <!-- ── 05 · CONTACT / FREQUENCY ── -->
+    <section id="contact" class="hb-sec hb-end">
+      <header class="hb-head">
+        <div class="hb-head-copy"><p class="hb-sec-k">Case 05 · {profile.frequency}</p><h2 data-decode data-perch>Keep the frequency</h2></div>
+        <p class="hb-lead">{profile.footer}</p>
+      </header>
+      <a class="hb-mail" href={url('logbook/')} data-perch>Read the logbook</a>
+      <p class="hb-cta"><a href="#work">The Vault ↗</a><a href={url('imaginos/')}>Imaginos ↗</a></p>
+      <p class="hb-readout">{profile.readout}</p>
+    </section>
+  </main>
+</Herb>

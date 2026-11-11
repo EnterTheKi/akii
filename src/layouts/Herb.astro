@@ -1,0 +1,101 @@
+---
+// The herbarium shell: Fay's top bar, type, shared stylesheet and wandering white
+// butterfly. KIAZAKI supplies the name, the 33:27 mark, the nav and the foot.
+import '../styles/herbarium.css';
+import { profile } from '../data/profile';
+import { url } from '../lib/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Path of this page relative to the root, used for the active nav item. */
+  path?: string;
+  /** The home page: no name or section links in the bar (the page carries them). */
+  home?: boolean;
+  /** Extra scripts (paths under public/) to run after the shared ones. */
+  scripts?: string[];
+  noindex?: boolean;
+}
+const {
+  title,
+  description = profile.description,
+  path = '',
+  home = false,
+  scripts = [],
+  noindex = false,
+} = Astro.props;
+const fullTitle = title ? `${title} · ${profile.name}` : `${profile.name} · ${profile.mark} · ${profile.frequency}`;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
+const here = Astro.url.pathname;
+const on = (p: string) => here.startsWith(url(p));
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+  <link rel="icon" href={url('favicon.svg')} type="image/svg+xml" />
+  <meta name="theme-color" content="#0b0907" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta name="twitter:card" content="summary" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script is:inline>document.documentElement.classList.add('hb-js');</script>
+  <slot name="head" />
+</head>
+<body class={home ? 'is-home' : 'is-page'}>
+  <a class="hb-skip" href="#main">Skip to content</a>
+  <header class="hb-top">
+    {!home && (
+      <a class="hb-brand" href={url()} data-perch>
+        <img class="hb-brand-owl" src={url('owl-mark.svg')} alt="" width="20" height="20" aria-hidden="true" />
+        {profile.name}<span class="kz-mark" aria-hidden="true">{profile.mark}</span>
+      </a>
+    )}
+    {!home && (
+      <nav class="hb-nav" aria-label="Main">
+        <a href={url('vault/')} aria-current={on('vault/') ? 'page' : undefined}>The Vault</a>
+        <a href={url('imaginos/')} aria-current={on('imaginos/') ? 'page' : undefined}>Imaginos</a>
+        <a href={url('logbook/')} aria-current={on('logbook/') ? 'page' : undefined}>Logbook</a>
+      </nav>
+    )}
+    <span class="hb-chips"><span class="hb-chip" title="the frequency"><b>{profile.frequency}</b> · {profile.mark}</span></span>
+  </header>
+
+  {home ? <slot /> : (
+    <main class="hb hb-page" id="main">
+      <slot />
+      <footer class="hb-foot">
+        <div class="hb-foot-main">
+          <p class="hb-tag">{profile.frequency} · {profile.mark}</p>
+          <a class="hb-mail" href={url('logbook/')} data-perch>Read the logbook</a>
+          <p class="hb-foot-note">{profile.footer}</p>
+          <p class="hb-readout">{profile.readout}</p>
+        </div>
+        <div class="hb-foot-side">
+          <p class="hb-cta">
+            <a href={url('vault/')}>The Vault ↗</a>
+            <a href={url('imaginos/')}>Imaginos ↗</a>
+            <a href={url('logbook/')}>Logbook ↗</a>
+          </p>
+        </div>
+      </footer>
+    </main>
+  )}
+
+  <!-- The white butterfly: wanders the page, perches on the work, opens the castle when caught -->
+  <a class="hb-fly" id="hb-fly" href={url('castle/')} aria-label="Enter the castle">
+    <canvas></canvas><span class="hb-fly-tip">Enter the castle</span>
+  </a>
+
+  {['js/flyer.js', 'experiments/kit.js', 'js/herb.js', ...scripts].map((s) => <script is:inline src={url(s)}></script>)}
+</body>
+</html>

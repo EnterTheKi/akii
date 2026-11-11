@@ -1,0 +1,24 @@
+---
+// The logbook: every kiaz note, newest first, each with its own owl seal.
+import Herb from '../layouts/Herb.astro';
+import { formatDate, getPosts, postHref, readMinutes, url } from '../lib/site';
+
+const posts = await getPosts();
+---
+<Herb title="The Logbook" description="The KIAZAKI logbook — notes from the long night: desire, discipline, 気, and the exact frequency of the deep work." path="logbook/">
+  <header class="hb-head">
+    <div class="hb-head-copy"><p class="hb-sec-k">Case notes · 気</p><h1 class="hb-title" data-decode data-perch>Notes from the long night</h1></div>
+    <p class="hb-lead">Dispatches on desire, discipline and the mysterious frequency. Written slowly, on purpose.</p>
+  </header>
+  <div class="hb-notes">
+    {posts.map((p, i) => (
+      <article class="hb-entry">
+        <p class="hb-entry-k">{formatDate(p.data.date)} · {readMinutes(p)} min read</p>
+        <img class="hb-sprig" src={url('owl-mark.svg')} alt="" aria-hidden="true" />
+        <h2><a href={postHref(p)}>{p.data.title}</a></h2>
+        <p class="hb-excerpt">{p.data.summary}</p>
+        <p class="hb-entry-f"><a href={postHref(p)}>Read →</a></p>
+      </article>
+    ))}
+  </div>
+</Herb>

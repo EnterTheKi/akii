@@ -1,0 +1,32 @@
+[
+  {
+    "no": "01",
+    "title": "The Watcher",
+    "note": "Irezumi owl on the melting katana. Its eyes report the only true time: 33:27.",
+    "art": "             ##   ##########   ##\n             ##. . . . . . . . ##\n           #####. . . . . . . #####\n         # .#####. . . . . . .#####.#\n        # . . .:: . . . . . .:: . . .#\n       # . . :    :. . . . :    :. . .#\n      # . . :      :. . . :      :. . .#\n     # . . .         . . .         . . .#\n     #. . .:   <span class=\"red\">33</span>   : . .:  <span class=\"red\">27</span>    : . . #\n     # . . :        :. . :        :. . .#\n     #. . .         ######        . . . #\n      #. . .:      : # .#.:      : . . #\n       #. . .:    : . ##. .:    : . . #\n        #. . . ::. . . . . . ::. . . #\n         #. . . . . . . . . . . . . #\n  ii+m+==================================e\n   .         ,        ~~            .      ,\n                ~        <span class=\"dim\">気</span>          ~\n              ~            ~        ~"
+  },
+  {
+    "no": "02",
+    "title": "The Approacher",
+    "note": "a lone figure at treeline in the mist, katana drawn up. Whatever comes to meet you, hold your line.",
+    "art": "      ~   ~     ~   |    ~      ~   ~\n   ~      ~        .-'-.-.-\\\\      ~      ~\n        ~     ,--~~        // ~~\n          ,--'    _.--,    //\n      ,--'     ,-'    '-. //\n   ~~~         |  ><   ~~ //  ~   ~\n               |  気   ~~ //\n     ~   ~     |    ~~~ //        ~\n    ~     ~    '-.,___,-'   ~    ~        ~\n  ~        ~        |          ~     ~   ~\n      ~      ~      |    ~      ~    ~\n      33    ~~      | )) 27    ~   ~~    ~\n          ~ ~       |       ~~~ ~    ~"
+  },
+  {
+    "no": "03",
+    "title": "Ensō Nº 33",
+    "note": "the circle drawn in one exhale. It is open because it is unfinished, like you.",
+    "art": "         .==========================.\n           ,'                    ',\n        /                            \\\n      /                                \\\n     |                                  |\n     |                <span class=\"dim\">気</span>                |\n     \\                                  /\n        \\                            /\n           ,'                    ',\n         '--------------------------'"
+  },
+  {
+    "no": "04",
+    "title": "The Gate",
+    "note": "torii at 33:27. Between its pillars is always the same distance as between your shins: one decision wide.",
+    "art": "  -========================================-\n   ========================================\n          --------------------------\n          |                        |\n          |            <span class=\"dim\">気</span>            |\n          |                        |\n      ~   |                        |  ~\n    ~     |                        |    ~\n  ~       |                        |      ~\n      ~   |                        |   ~\n          |                        |  ~\n    ~  ~  |                        |  ~  ~\n  ~~   ~  ~                        ~   ~  ~\n    ~      ~                      ~     ~"
+  },
+  {
+    "no": "05",
+    "title": "Signal from the woods",
+    "note": "the frequency missing its mark. 33:27 bounces off trees until somebody in the dark answers.",
+    "art": "          ~ ~         ~\n        .      ~~            ~\n          \\        .   |   .          ~\n       ~   \\  ~~   \\  |.   ~\n            \\       \\|/       ~        ~\n             '.      '\\        ~    ~\n         ~~    '-.     \\  .      .\n             ~     '-. '\\ '  ~  .   ~\n                  '-, '--++---___        ~\n              .         |   \\\\   '-,.\n        ~~          ~~  |    \\\\     \\\n         ~    ~     ~   | ~   \"\\\\    \\.     ~\n           .    ~       |   ~  '\\\\    \\\\      ~\n   ~           .  ~    |   ~   ' \\\\    \\\\. ~\n            ~~         |      ~  ' \\_.    \\ ~\n      .     ~      ~~  |  ??  ~    ' ~~    \\  ~"
+  }
+]

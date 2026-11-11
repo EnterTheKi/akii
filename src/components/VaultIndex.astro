@@ -1,0 +1,62 @@
+---
+// The Vault: every kiaz frame, grouped as Stills and Merch. Thumbnails open a
+// full-frame viewer; the small herbarium corners and scan line are Fay's.
+import Herb from '../layouts/Herb.astro';
+import { stills, merch } from '../data/vault';
+import { url } from '../lib/site';
+
+const groups = [
+  { key: 'stills', label: 'Stills', mark: '図', items: stills },
+  { key: 'merch', label: 'Merch', mark: '衣', items: merch },
+];
+const total = stills.length + merch.length;
+const clean = (c: string) => c.replace(/^\d+\s*—\s*/, '');
+---
+<Herb title="The Vault" description="Fifty frames, folded away — the KIAZAKI prints and merch." path="vault/" scripts={['js/vault.js']}>
+  <div class="hb-vault-page">
+    <header class="hb-head">
+      <div class="hb-head-copy"><p class="hb-sec-k">Case file · 蔵</p><h1 class="hb-title" data-decode data-perch>The Vault</h1></div>
+      <p class="hb-lead">Fifty frames, folded away. The prints and the merch, kept in two groups so the case stays quiet. Open one, click a frame, step through with ← →.</p>
+    </header>
+
+    <p class="hb-vault-hint"><span>{total} frames</span><span>{stills.length} stills</span><span>{merch.length} merch</span><span>open exhibit · esc to close</span></p>
+
+    {groups.map((g) => (
+      <section class="hb-vault-group" aria-labelledby={`vault-${g.key}`}>
+        <header class="hb-vault-group-head">
+          <div><span class="hb-vault-mark">{g.mark}</span><h2 id={`vault-${g.key}`}>{g.label}</h2></div>
+          <span class="hb-vault-count">{String(g.items.length).padStart(2, '0')} frames</span>
+        </header>
+        <div class="hb-vault-grid">
+          {g.items.map((v) => (
+            <figure class="hb-vault-item" id={v.id}>
+              <button class="hb-vault-btn" type="button" data-vault-open data-full={url(v.src)} data-caption={v.caption} aria-label={`Open frame ${v.no}: ${v.alt}`}>
+                <img src={url(v.thumb)} alt={v.alt} width={v.width} height={v.height} loading="lazy" decoding="async" />
+                <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+              </button>
+              <figcaption><b>{v.no}</b><span>{clean(v.caption)}</span></figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+    ))}
+
+    <p class="hb-vault-end"><a class="hb-back" href={url('#work')}>← Back to the site</a></p>
+
+    <div class="hb-lb" id="vaultLightbox" role="dialog" aria-modal="true" aria-label="The Vault frame viewer" aria-hidden="true" hidden>
+      <div class="hb-lb-top">
+        <span class="hb-tag">The Vault · 蔵</span>
+        <button class="hb-lb-close" id="vaultClose" type="button" aria-label="Close viewer">close · esc</button>
+      </div>
+      <div class="hb-lb-stage"><img id="vaultImg" alt="" /></div>
+      <div class="hb-lb-bar">
+        <span class="hb-lb-cap" id="vaultCap"></span>
+        <span class="hb-lb-count" id="vaultNum"></span>
+        <span class="hb-lb-nav">
+          <button id="vaultPrev" type="button" aria-label="Previous frame">←</button>
+          <button id="vaultNext" type="button" aria-label="Next frame">→</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</Herb>

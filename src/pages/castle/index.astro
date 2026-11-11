@@ -1,0 +1,48 @@
+---
+import Castle from '../../layouts/Castle.astro';
+import glyphs from '../../data/imaginos.json';
+import { url } from '../../lib/site';
+
+const owl = glyphs[0];
+---
+<Castle
+  title="The Castle"
+  description="The watcher's castle: an interactive 3D ASCII keep behind the butterfly. 33:27."
+>
+  <canvas
+    id="castle-canvas"
+    class="castle-canvas"
+    tabindex="0"
+    aria-label="An interactive 3D ASCII castle. Drag to turn; scroll or pinch to move."
+  ></canvas>
+
+  <div class="castle-sky" aria-hidden="true">
+    <pre set:html={owl.art}></pre>
+  </div>
+
+  <header class="castle-hud">
+    <a class="castle-brand" href={url()} aria-label="KIAZAKI — back to the archive">
+      <img src={url('owl-mark.svg')} alt="" width="28" height="28" aria-hidden="true" />
+      <span>KIAZAKI</span>
+      <b>The Castle</b>
+    </a>
+    <a class="castle-back" href={url()}>← The archive</a>
+  </header>
+
+  <footer class="castle-foot">
+    <p class="castle-controls"><span>Drag to turn</span><span>Scroll or pinch to move</span></p>
+    <p class="castle-caption"><b>The Watcher's Castle</b><span>33:27</span></p>
+  </footer>
+
+  <section class="castle-gate" id="castleGate" aria-label="Enter the castle">
+    <div class="castle-gate-in">
+      <p class="castle-gate-kicker">KIAZAKI · 33:27</p>
+      <img class="castle-gate-crest" src={url('owl-mark.svg')} alt="" width="46" height="46" aria-hidden="true" />
+      <pre class="castle-gate-glyph" aria-hidden="true" set:html={owl.art}></pre>
+      <h1>The castle</h1>
+      <p class="castle-gate-copy">The watcher has been expecting you. Behind the gate, the dark keeps moving.</p>
+      <button class="castle-enter" type="button" data-castle-enter>Enter the gate</button>
+      <p class="castle-gate-hint">or let the dark settle</p>
+    </div>
+  </section>
+</Castle>

@@ -1,0 +1,71 @@
+---
+// The Cabinet: the living corner of Imaginos. Three plates, one script.
+import Herb from '../layouts/Herb.astro';
+import { url } from '../lib/site';
+import '../styles/cabinet.css';
+---
+<Herb
+  title="The Cabinet"
+  description="The Cabinet — three living glyphs in the KIAZAKI cipher archive: the Watcher, the Signal and the Blade."
+  path="imaginos/cabinet/"
+  scripts={['js/cabinet.js']}
+>
+  <header class="hb-head">
+    <div class="hb-head-copy">
+      <p class="hb-sec-k">Living glyphs · 動</p>
+      <h1 class="hb-title" data-decode data-perch>The Cabinet</h1>
+    </div>
+    <p class="hb-lead">Three glyphs left running in the dark. The castle is the room; these are the drawers.</p>
+  </header>
+
+  <section class="cab-grid" aria-label="Three living ASCII plates">
+    <figure class="cab-plate">
+      <div class="cab-screen">
+        <canvas data-cab="watcher" aria-hidden="true"></canvas>
+        <div class="cab-hud" aria-hidden="true"><span><i class="cab-led"></i>Plate 01 · Live</span><b>33:27</b></div>
+        <i class="c tl" aria-hidden="true"></i><i class="c tr" aria-hidden="true"></i><i class="c bl" aria-hidden="true"></i><i class="c br" aria-hidden="true"></i>
+      </div>
+      <figcaption class="cab-caption">
+        <p class="cab-kicker">01 / The Watcher</p>
+        <h2>The Watcher</h2>
+        <p class="cab-note">A gaze that keeps its own hours. Follow it with the pointer; tap to blink.</p>
+        <p class="cab-meta"><span>Gaze</span><span>Follows / blinks</span></p>
+      </figcaption>
+    </figure>
+
+    <figure class="cab-plate">
+      <div class="cab-screen">
+        <canvas data-cab="signal" aria-hidden="true"></canvas>
+        <div class="cab-hud" aria-hidden="true"><span><i class="cab-led"></i>Plate 02 · Live</span><b>33:27</b></div>
+        <i class="c tl" aria-hidden="true"></i><i class="c tr" aria-hidden="true"></i><i class="c bl" aria-hidden="true"></i><i class="c br" aria-hidden="true"></i>
+      </div>
+      <figcaption class="cab-caption">
+        <p class="cab-kicker">02 / The Signal</p>
+        <h2>The Signal</h2>
+        <p class="cab-note">A carrier that never resolves. Move the pointer to tune it; tap to send a pulse.</p>
+        <p class="cab-meta"><span>Carrier</span><span>Tune / pulse</span></p>
+      </figcaption>
+    </figure>
+
+    <figure class="cab-plate">
+      <div class="cab-screen">
+        <canvas data-cab="blade" aria-hidden="true"></canvas>
+        <div class="cab-hud" aria-hidden="true"><span><i class="cab-led"></i>Plate 03 · Live</span><b>33:27</b></div>
+        <i class="c tl" aria-hidden="true"></i><i class="c tr" aria-hidden="true"></i><i class="c bl" aria-hidden="true"></i><i class="c br" aria-hidden="true"></i>
+      </div>
+      <figcaption class="cab-caption">
+        <p class="cab-kicker">03 / The Blade</p>
+        <h2>The Blade</h2>
+        <p class="cab-note">The katana melts, remembers its shape, and returns. Tap to quench the blade.</p>
+        <p class="cab-meta"><span>Temper</span><span>Melt / reform</span></p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <footer class="hb-doc-end">
+    <p class="hb-links">
+      <a href={url('imaginos/')}>← The glyph archive</a>
+      <a href={url('castle/')}>The castle →</a>
+    </p>
+  </footer>
+</Herb>
