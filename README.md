@@ -8,9 +8,12 @@ kiaz's — the Way, the Vault, Imaginos and the Logbook.
 
 ```sh
 npm install
-npm run dev      # http://localhost:4321/
+npm run dev      # http://localhost:4321/akii/   (base is /akii for GitHub Pages)
 npm run build    # dist/
 ```
+
+Pushing to `main` builds the site and publishes `dist/` to GitHub Pages at
+<https://entertheki.github.io/akii/> via `.github/workflows/deploy.yml`.
 
 ## Where things live
 
