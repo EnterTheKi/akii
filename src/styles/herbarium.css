@@ -680,13 +680,15 @@ body::after {
 
 /* ══════════════════════════════════════════════════════════════
    THEME LAYER — Fay's palette by default, a light sheet on request
-   The night is Fay's original: cool near-black, coral, gold, leaf.
-   The 1930s brass rules, sepia garden and film grain are retired.
+   The night is Fay's shell: cool near-black ground, but the accent is
+   KIAZAKI red — a lacquer vermillion, not Fay's coral. Gold and leaf
+   stay as the quiet second and third tones. The 1930s brass rules,
+   sepia garden and film grain are retired.
    ══════════════════════════════════════════════════════════════ */
 :root {
   --night: #0b0c0e; --night-2: #121512;
   --ink: #e8e4d0; --ink-2: #cfcfcf; --dim: #8a8a9a;
-  --red: #ff8a8a; --gold: #e6c34a; --leaf: #6f9f6f; --moss: #3f6b3f; --pollen: #e6d27a;
+  --red: #e53935; --gold: #e6c34a; --leaf: #6f9f6f; --moss: #3f6b3f; --pollen: #e6d27a;
   --brass: var(--gold);
   --surface: #101214;
   --copy: #b9c0c8;
@@ -710,7 +712,7 @@ body::after {
 [data-theme='light'] {
   --night: #f5f2e9; --night-2: #e9e4d6;
   --ink: #12141a; --ink-2: #2b3037; --dim: #5c6270;
-  --red: #a8332e; --gold: #7d5f14; --leaf: #3c6b3c; --moss: #2e5230; --pollen: #7a5f1c;
+  --red: #a81f1a; --gold: #7d5f14; --leaf: #3c6b3c; --moss: #2e5230; --pollen: #7a5f1c;
   --surface: #fffdf6;
   --copy: #3a4048;
   --nav: #545a67;
