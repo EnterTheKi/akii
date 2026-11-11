@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#060606">
+<title>IMAGINOS — KIAZAKI</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KIAZAKI">
+<meta property="og:title" content="IMAGINOS — KIAZAKI">
+<meta property="og:description" content="Imaginos — the glyph archive. Butterfly, bloom, seed-head, meadow: the Kiazaki symbols rendered in raw ASCII.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IMAGINOS — KIAZAKI">
+<meta name="twitter:description" content="Imaginos — the glyph archive. Butterfly, bloom, seed-head, meadow: the Kiazaki symbols rendered in raw ASCII.">
+<meta name="description" content="Imaginos — the glyph archive. Butterfly, bloom, seed-head, meadow: the Kiazaki symbols rendered in raw ASCII.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23060606'/%3E%3Ctext x='16' y='23' font-size='18' text-anchor='middle' fill='%23ff2a2a' font-family='serif'%3E気%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=11">
+<script>
+  var kt = null;
+  try { kt = localStorage.getItem("kiazaki-theme"); } catch (e) {}
+  if (!kt) {
+    try { kt = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"; } catch (e) { kt = "dark"; }
+  }
+  document.documentElement.setAttribute("data-theme", kt);
+</script>
+</head>
+<body>
+
+<header>
+  <a class="logo mono" href="index.html">KIAZAKI<span aria-hidden="true">·</span><b>33:27</b></a>
+  <nav class="mono">
+    <a href="index.html">home</a>
+    <a href="blog.html">blog</a>
+    <a href="imaginos.html" aria-current="page">imaginos</a>
+    <button id="themeToggle" type="button">noir / paper</button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="pagehead">
+    <p class="kicker">Glyph archive · 見えない</p>
+    <h1 style="margin-top:.6rem">Imaginos</h1>
+    <p>The unseen made visible in the plainest characters there are. Five specimens, no images — every mark here is already inside the page.</p>
+  </div>
+
+  <section>
+    <figure class="piece piece-flyer">
+      <canvas id="asciiFlyer" role="img" aria-label="A live ASCII butterfly, drawn in 0s and 1s"></canvas>
+      <figcaption><b>The Pollinator</b> — a butterfly rendered live in 0s and 1s. It moves pollen between gardens that would never meet.</figcaption>
+    </figure>
+
+    <figure class="piece">
+  <pre class="ascii" aria-hidden="true">
+                                <span class="faint">..</span><span class="red">10</span><span class="faint">''</span>
+                               <span class="faint">.</span><span class="red">011011</span><span class="faint">.</span>          <span class="red">·</span>
+                <span class="red">·</span>      <span class="faint">..</span><span class="red">0010</span><span class="faint">..</span><span class="red">1000001</span><span class="faint">.</span>
+                       <span class="faint">.</span><span class="red">01010010</span><span class="dim">ooo</span><span class="red">11</span><span class="faint">'.'..'.</span>
+                       <span class="faint">'.</span><span class="red">10011</span><span class="dim">.@@@@@o</span><span class="red">1110101</span><span class="faint">'</span>
+                         <span class="faint">..</span><span class="red">11</span><span class="dim">o88@@@@@.</span><span class="red">000011</span><span class="faint">'</span>
+                         <span class="faint">''</span><span class="red">000</span><span class="dim">o@@@8@.</span><span class="red">0100</span><span class="faint">...</span>
+                        <span class="faint">.</span><span class="red">0010111</span><span class="dim">o..</span><span class="red">0111</span><span class="faint">.</span>
+                        <span class="faint">'</span><span class="red">0001001</span><span class="faint">.</span><span class="red">100111</span><span class="faint">.</span>            <span class="red">*</span>
+                         <span class="faint">'.''''</span>  <span class="faint">'</span><span class="red">00011</span><span class="faint">''</span>
+            <span class="red">·</span>                   <span class="dim">|</span> <span class="faint">'''.'.</span>
+                                <span class="dim">|\_</span>
+                                <span class="dim">|</span>
+                                <span class="dim">|</span>
+                                <span class="dim">|</span>
+                       <span class="faint">,</span> <span class="faint">|</span> <span class="faint">'</span> <span class="dim">,_/|</span><span class="faint">'</span> <span class="faint">|</span> <span class="faint">,</span> <span class="dim">'</span> <span class="faint">,</span>
+                     <span class="faint">',|'</span><span class="dim">|</span><span class="faint">,;,|</span><span class="dim">|</span><span class="faint">|</span><span class="dim">|</span><span class="faint">;,</span><span class="dim">|</span><span class="faint">'|,;</span><span class="dim">|</span><span class="faint">|',</span>
+                     <span class="faint">,..</span> <span class="faint">..,</span> <span class="faint">.,.</span> <span class="faint">,..</span> <span class="faint">..,</span> <span class="faint">.,.</span>
+</pre>
+  <figcaption><b>The Red Bloom</b> — one tall red bloom, wide open — the way the garden looks when the butterfly lands.</figcaption>
+</figure>
+
+    <figure class="piece">
+  <pre class="ascii" aria-hidden="true">
+
+                      <span class="faint">'</span>01<span class="faint">.</span>
+                 <span class="faint">'</span>00<span class="faint">.</span> <span class="faint">'</span>110 <span class="faint">'</span>101<span class="faint">'</span>                 <span class="red">·</span>
+                 <span class="faint">'</span>011011100000<span class="faint">.</span>
+                   <span class="faint">.</span>11<span class="dim">.8@@.</span>01<span class="faint">.'.'</span>
+               <span class="faint">.</span>10100<span class="dim">.@8@@@.</span>01000<span class="faint">.</span>                   <span class="red">*</span>
+                <span class="faint">'.''</span>10<span class="dim">o@@@o</span>10<span class="faint">.</span>          <span class="faint">'.</span>
+                  <span class="faint">'</span>000100100111<span class="faint">.</span>    <span class="faint">.</span>11<span class="faint">'</span>11<span class="faint">'</span>11<span class="faint">.</span>
+          <span class="red">·</span>      <span class="faint">.</span>000<span class="faint">'</span> 001<span class="faint">.</span><span class="dim">_</span><span class="faint">'</span>01<span class="faint">.</span>      11<span class="dim">.o.</span>0<span class="faint">.</span>10<span class="faint">.</span>
+                       <span class="faint">'</span>11<span class="faint">'</span>        <span class="faint">.</span>010<span class="dim">o8@8.</span>00<span class="faint">.</span>
+                         <span class="dim">\</span>          <span class="faint">.</span>101<span class="dim">o.o</span>0001<span class="faint">'</span>
+                          <span class="dim">|</span>         <span class="faint">''</span> 10<span class="faint">'</span>11<span class="faint">'</span>
+                        <span class="dim">_/|</span>            <span class="faint">..</span>  <span class="faint">'.</span>
+                          <span class="dim">|</span>           <span class="dim">/</span>
+                          <span class="dim">|</span>        <span class="dim">_//</span>
+                  <span class="dim">,</span> <span class="faint">'</span> <span class="faint">,</span> <span class="faint">|</span> <span class="dim">|</span> <span class="dim">,</span> <span class="faint">,</span> <span class="faint">'</span> <span class="faint">|</span> <span class="dim">|</span> <span class="dim">'</span> <span class="faint">,</span> <span class="faint">,</span> <span class="faint">|</span> <span class="faint">,</span>
+                <span class="faint">,</span> <span class="faint">|</span><span class="dim">|</span><span class="faint">;,|'</span><span class="dim">|</span><span class="faint">,</span><span class="dim">|</span><span class="faint">,|</span><span class="dim">|</span><span class="faint">|,;,</span><span class="dim">|</span><span class="faint">'</span><span class="dim">|</span><span class="faint">,;</span><span class="dim">|</span><span class="faint">|'|,</span><span class="dim">;</span><span class="faint">,|',</span>
+                <span class="faint">.,.</span> <span class="faint">,..</span> <span class="faint">..,</span> <span class="faint">.,.</span> <span class="faint">,..</span> <span class="faint">..,</span> <span class="faint">.,.</span> <span class="faint">,..</span> <span class="faint">..</span>
+</pre>
+  <figcaption><b>The Daisies</b> — white daisies — a big one, and a small one leaning in.</figcaption>
+</figure>
+
+    <figure class="piece">
+  <pre class="ascii" aria-hidden="true">
+                      *                         <span class="red">·</span>
+                  *       *              <span class="red">·</span>
+               *       *                           *
+            **             <span class="faint">:</span> ***     *
+                   <span class="faint">o</span><span class="dim">@@@@@</span><span class="faint">o''..</span>              *
+                   <span class="faint">o</span><span class="dim">88@@8</span><span class="faint">o::'</span>   *
+                   <span class="faint">o</span><span class="dim">@@8@@</span><span class="faint">o.</span>
+                  <span class="faint">''...::</span>              <span class="red">·</span>
+               *<span class="faint">..</span> <span class="faint">::</span> <span class="faint">'</span>*                      <span class="red">·</span>
+                   <span class="faint">.</span> *<span class="dim">/|</span>
+                  *    <span class="dim">|</span>  *
+                       <span class="dim">\</span>
+                        <span class="dim">|</span>
+                        <span class="dim">|\_</span>
+                        <span class="dim">|</span>
+               <span class="faint">'</span> <span class="faint">,</span> <span class="faint">|</span> <span class="faint">'</span> <span class="dim">,|</span><span class="faint">,</span> <span class="faint">'</span> <span class="faint">|</span> <span class="faint">,</span> <span class="dim">'</span>
+             <span class="faint">,</span><span class="dim">|</span><span class="faint">;,|'</span><span class="dim">|</span><span class="faint">,;,|</span><span class="dim">|</span><span class="faint">|,;,</span><span class="dim">|</span><span class="faint">'|,;</span><span class="dim">|</span><span class="faint">,</span>
+            <span class="faint">,.</span> <span class="faint">,..</span> <span class="faint">..,</span> <span class="faint">.,.</span> <span class="faint">,..</span> <span class="faint">..,</span> <span class="faint">.,</span>
+</pre>
+  <figcaption><b>The Seed-head</b> — gone to seed, a few already drifting — the next garden, leaving early.</figcaption>
+</figure>
+
+    <figure class="piece">
+  <pre class="ascii" aria-hidden="true">
+                                 <span class="red">·</span>
+                    <span class="faint">.'.</span>    <span class="faint">.'..</span>
+                   <span class="faint">'</span><span class="red">0011</span><span class="faint">..</span><span class="red">1111</span><span class="faint">'</span>
+                   <span class="faint">.</span><span class="red">0111100010</span><span class="faint">'</span>
+                  <span class="faint">.'..</span><span class="red">0</span><span class="dim">.@@8.</span><span class="red">00000</span><span class="faint">.'</span> <span class="dim">.</span><span class="red">01</span><span class="dim">'</span>  <span class="dim">'</span><span class="red">1</span><span class="dim">'</span>
+         <span class="red">*</span>      <span class="faint">'</span><span class="red">01100</span><span class="dim">o8@88@o</span><span class="red">00000</span><span class="faint">'</span>  <span class="red">010</span><span class="dim">.</span><span class="red">000</span><span class="dim">.</span>
+                <span class="faint">'.</span><span class="red">01001</span><span class="dim">o@@8.</span><span class="red">1</span><span class="faint">'...</span><span class="dim">'</span><span class="red">1001</span><span class="dim">.o8oo</span><span class="red">0101</span><span class="dim">'</span>       <span class="red">·</span>
+                    <span class="faint">.</span><span class="red">0011001111</span><span class="faint">'</span>  <span class="dim">'</span><span class="red">000</span><span class="dim">@@@@@</span><span class="red">0110</span><span class="dim">.</span>
+                    <span class="faint">.</span><span class="red">0101</span><span class="faint">'.</span><span class="red">0110</span><span class="faint">'</span>   <span class="red">001</span><span class="dim">o.8o.</span><span class="red">11</span><span class="dim">.</span>
+                    <span class="faint">'..'</span>  <span class="dim">|</span> <span class="faint">'..</span>   <span class="dim">'</span><span class="red">01</span><span class="dim">.'</span><span class="red">001</span><span class="dim">'</span><span class="red">110</span><span class="dim">'</span>
+                          <span class="dim">\</span>           <span class="dim">.</span><span class="red">00</span><span class="dim">'</span>
+                           <span class="dim">|</span>           <span class="dim">|</span>
+                         <span class="dim">_/|</span>           <span class="dim">/</span>
+        <span class="dim">((</span><span class="faint">(</span><span class="dim">((</span><span class="faint">^</span><span class="dim">))</span><span class="faint">)</span><span class="dim">))</span>        <span class="dim">|</span>        <span class="dim">_/|</span>
+       <span class="dim">(</span><span class="faint">(</span><span class="dim">8%</span><span class="faint">8</span><span class="dim">%@</span><span class="faint">#</span><span class="dim">@#</span><span class="red">o</span><span class="dim">))</span>       <span class="dim">|</span>          <span class="dim">|</span>         <span class="dim">((</span><span class="faint">(</span><span class="dim">(^</span><span class="faint">)</span><span class="dim">))</span><span class="faint">)</span>
+      <span class="faint">(</span><span class="dim">(%</span><span class="faint">@</span><span class="dim">%@</span><span class="faint">#</span><span class="red">*</span><span class="dim">#</span><span class="faint">&amp;</span><span class="dim">8%</span><span class="faint">8</span><span class="dim">))</span><span class="faint">'</span> <span class="faint">,</span> <span class="faint">|</span> <span class="dim">|</span> <span class="dim">,</span> <span class="faint">,</span> <span class="faint">'</span> <span class="faint">|</span> <span class="faint">,</span><span class="dim">|'</span> <span class="faint">,</span> <span class="faint">,</span> <span class="faint">|</span><span class="dim">((</span><span class="faint">%</span><span class="dim">@%</span><span class="faint">@</span><span class="dim">#</span><span class="red">*</span><span class="faint">#</span><span class="red">*</span><span class="dim">8</span><span class="faint">)</span><span class="dim">)</span>
+     <span class="dim">|(</span><span class="faint">(</span><span class="dim">#</span><span class="red">o</span><span class="faint">#</span><span class="dim">&amp;8</span><span class="faint">&amp;</span><span class="dim">8%</span><span class="faint">@</span><span class="dim">%</span><span class="red">*</span><span class="faint">)</span><span class="dim">)</span><span class="faint">;,|'</span><span class="dim">|</span><span class="faint">,</span><span class="dim">|</span><span class="faint">,|</span><span class="dim">|</span><span class="faint">|,;,</span><span class="dim">|</span><span class="faint">'|</span><span class="dim">|</span><span class="faint">;</span><span class="dim">|</span><span class="faint">|'|,</span><span class="dim">;</span><span class="faint">(</span><span class="dim">(#</span><span class="red">o</span><span class="dim">#</span><span class="red">o</span><span class="faint">8</span><span class="dim">&amp;8</span><span class="faint">%</span><span class="dim">@)</span><span class="faint">),</span>
+     <span class="faint">.,.</span> <span class="faint">,..</span> <span class="faint">..,</span> <span class="faint">.,.</span> <span class="faint">,..</span> <span class="faint">..,</span> <span class="faint">.,.</span> <span class="faint">,..</span> <span class="faint">..,</span> <span class="faint">.,.</span> <span class="faint">,..</span> <span class="faint">..,</span> <span class="faint">.,.</span> <span class="faint">,..</span>
+</pre>
+  <figcaption><b>The Meadow</b> — a corner between flowering bushes — the route from one flower to the next.</figcaption>
+</figure>
+  </section>
+</main>
+
+<footer>
+  <div class="foot-art" aria-hidden="true"><pre class="ascii" id="footFlower"></pre></div>
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <a class="logo mono" href="index.html">KIAZAKI<span aria-hidden="true">·</span><b>33:27</b></a>
+      <p>A quiet companion for the long night — stoic owl ascetics, a katana that melts, and the exact frequency of the deep work. Low-ki since the beginning: wear your energy. Move in silence.</p>
+      <div class="readout" id="readout">[ 33:27 ] · 気 on-air · [ 33:27 ]</div>
+    </div>
+    <div class="foot-cols">
+      <div>
+        <h3>Wander</h3>
+        <a href="index.html">home</a>
+        <a href="blog.html">blog</a>
+        <a href="imaginos.html">imaginos</a>
+        <a href="index.html#vault">the vault</a>
+      </div>
+      <div>
+        <h3>Logbook</h3>
+        <a href="posts/ro-ki.html">move in silence</a>
+        <a href="posts/high-ki-low-ki.html">high ki / low ki</a>
+        <a href="posts/shed-skin.html">the shed skin</a>
+        <a href="posts/the-library.html">the owl's library</a>
+        <a href="posts/on-desire.html">on desire</a>
+        <a href="posts/enter-the-ki.html">enter the 気</a>
+        <a href="posts/the-owl-regrets-nothing.html">regrets nothing</a>
+      </div>
+      <div>
+        <h3>The Way</h3>
+        <a href="index.html#way">perch in the dark</a>
+        <a href="index.html#way">let the katana melt</a>
+        <a href="index.html#way">tune to 33:27</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bar">
+    <div class="bar-in">
+      <span class="mono">© 2026 KIAZAKI</span>
+      <span class="mono ftem">ki az a ki?</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/flyer.js?v=1"></script>
+<script src="assets/site.js?v=1"></script>
+</body>
+</html>
